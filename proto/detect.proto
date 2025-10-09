@@ -1,0 +1,14 @@
+syntax = "proto3";
+package detection;
+
+service ProductInfo {
+    rpc GetFeature (mockMessage1) returns (mockMessage2);
+}
+
+message mockMessage1{
+    string id = 1;
+}
+
+message mockMessage2{
+    string id = 1;
+}
