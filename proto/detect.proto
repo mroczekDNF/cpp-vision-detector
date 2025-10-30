@@ -1,14 +1,29 @@
 syntax = "proto3";
-package detection;
+package detector;
 
-service ProductInfo {
-    rpc GetFeature (mockMessage1) returns (mockMessage2);
-}
+message Image { 
+  bytes data = 1;
+  int32 width = 2;
+  int32 height = 3;
+  string fmt = 4;
+} 
+// fmt: "png"/"jpg"
+message Box { 
+  float x = 1;
+  float y = 2;
+  float w = 3;
+  float h = 4;
+  float score = 5;
+  string label = 6; 
+  }
 
-message mockMessage1{
-    string id = 1;
-}
+message DetectRequest { 
+  Image image = 1; 
+  }
+message DetectResponse { 
+  repeated Box boxes = 1;
+  }
 
-message mockMessage2{
-    string id = 1;
+service Detector {
+  rpc Detect(DetectRequest) returns (DetectResponse);
 }
